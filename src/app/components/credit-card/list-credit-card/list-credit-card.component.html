@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="row">
+
+        <table class="table mt-5">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col"># Tarjeta</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">CVC</th>
+                <th scope="col">Fecha vencimiento</th>
+                <th scope="col">Accion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor='let card of creditCards'>
+                <th scope="row">{{ card.creditCardNumber }}</th>
+                <td>{{ card.creditCardCategory.name }}</td>
+                <td>{{ card.cvc }}</td>
+                <td>{{ card.expirationDate }}</td>
+                <td><a *ngIf='card.parentCreditCard == null' class="btn btn-primary" 
+                    [routerLink]="['/cards', card.creditCardId]">Solicitar nueva tarjeta</a> 
+                    <a *ngIf='card.parentCreditCard == null' class="ml-2 btn btn-warning" 
+                    [routerLink]="['/cards/edit', card.creditCardId]">Editar</a></td>
+              </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

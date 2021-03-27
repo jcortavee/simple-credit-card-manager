@@ -1,0 +1,71 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+    <div class="row mt-5">
+        
+        <div class="col-sm-12">
+            <h2>Estado de cuenta</h2>
+
+        </div>
+        <div class="col-sm-12">
+            <div class="jumbotron" *ngIf="creditCard.account !== undefined">
+                <h1 class="display-4">{{ creditCard.account.customer.person.firstName }} {{ creditCard.account.customer.person.lastName }}</h1>
+                <div class="lead">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <b>Numero de tarjeta: </b> {{ creditCard.creditCardNumber }} <br/>
+                            <b>Categoria de tarjeta: </b> {{ creditCard.creditCardCategory.name }} <br/>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <b>Fecha de corte: </b> {{ creditCard.account.cutoffDay + '/' + getMonth() + '/' + date.getFullYear() }} <br/>
+                            <b>Fecha de pago minimo: </b> {{ creditCard.account.paymentDay + '/' + getMonthPayment() + '/' + date.getFullYear() }} <br/>
+                        </div>
+                    </div>
+                </div>
+                <p class="lead">
+                </p>
+                <hr class="my-4">
+                <div class="lead" *ngIf='cutoff != undefined'>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <b>Corte: </b> {{ cutoff.amount }} <br/>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <b>Pago minimo: </b> {{ cutoff.minimunPayment }} <br/>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-4">
+                <div class="lead">
+                    <h3>Movimientos</h3>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                  <tr>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Descripcion</th>
+                                    <th scope="col">Debito</th>
+                                    <th scope="col">Credito</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor='let transaction of transactions'>
+                                      <ng-container *ngIf='transaction.transactionType.transactionTypeId == 1 || transaction.transactionType.transactionTypeId == 2'>
+                                          <td>{{ transaction.date }}</td>
+                                          <td>{{ transaction.description }}</td>
+                                          <td>{{ (transaction.transactionType.transactionTypeId == 1) ? transaction.amount: '' }}</td>
+                                          <td>{{ (transaction.transactionType.transactionTypeId == 2) ? transaction.amount: '' }}</td>
+                                      </ng-container>
+                                  </tr>
+                                </tbody>
+                              </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="row">
+
+        <table class="table mt-5">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col"># Solicitud</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Tipo de tarjeta</th>
+                <th scope="col">Accion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor='let application of applications'>
+                <th scope="row">{{ application.applicationId }}</th>
+                <td>{{ application.date }}</td>
+                <td>{{ application.person.firstName }}</td>
+                <td>{{ application.person.lastName }}</td>
+                <td>{{ application.applicationStatus.status }}</td>
+                <td>{{ application.creditCardCategory.name }}</td>
+                <td><a *ngIf='application.applicationStatus.applicationStatusId === 1' class="btn btn-primary" 
+                    [routerLink]="['/application', application.applicationId]">Ver solicitud</a> </td>
+              </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

@@ -1,0 +1,98 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-sm-8 offset-sm-2">
+            
+            <form [formGroup]='f' (ngSubmit)='onSubmit(f)' class="col-sm-12">
+                <h2>Solicitud #{{id}}</h2>
+                <div class="form-group">
+                    <label for="category">Estado de la solicitud</label>
+                    <select formControlName='category' class="form-control">
+                        <option value="" selected>Choose your option</option>
+                        <option *ngFor="let s of applicationStatus" [value]='s.applicationStatusId'>{{ s.status }}</option>
+                    </select>
+                </div>
+
+                <ng-container *ngIf='f.get("category").value == 3'>
+                    <h3>Información de la cuenta</h3>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="accountNumber"># Cuenta</label>
+                            <input formControlName='accountNumber' placeholder="4384923102" id="accountNumber" type="text" class="form-control">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="cutoffDay">Dia de corte</label>
+                            <input formControlName='cutoffDay' placeholder="14" id="cutoffDay" type="number" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="paymentDay">Dia de pago</label>
+                            <input formControlName='paymentDay' placeholder="4" id="paymentDay" type="number" class="form-control">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="limit">Limite</label>
+                            <input formControlName='limit' placeholder="3000" id="limit" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="interestRate">Interes con pago (porcentaje)</label>
+                            <input formControlName='interestRate' placeholder="5" id="interestRate" type="number" class="form-control">
+                        </div>
+
+                        <div class="form-group col-sm-6">
+                            <label for="interestRateWithoutPayment">Interes sin pago (porcentaje)</label>
+                            <input formControlName='interestRateWithoutPayment' placeholder="5" id="interestRateWithoutPayment" type="number" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="minimunPayment">Pago minimo (porcentaje)</label>
+                            <input formControlName='minimunPayment' placeholder="5" id="minimunPayment" type="number" class="form-control">
+                        </div>
+                    </div>
+
+                    <h3>Información de la tarjeta</h3>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="creditCardNumber"># Tarjeta</label>
+                            <input formControlName='creditCardNumber' placeholder="5555095928349148" id="creditCardNumber" type="text" class="form-control">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="cvc">CVC</label>
+                            <input formControlName='cvc' placeholder="434" id="cvc" type="number" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="expirateDate">Fecha de vencimiento</label>
+                            <input formControlName='expirateDate' id="expirateDate" type="date" class="form-control">
+                        </div>
+                    </div>
+
+                    <h4 class="mt-5">Información del usuario</h4>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="username">Usuario</label>
+                            <input formControlName='username' placeholder="prueba" id="username" name="birthdate" type="text" class="form-control">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="password">Contraseña</label>
+                            <input formControlName='password' placeholder='*******' id="password" name="password" type="password" class="form-control">
+                        </div>
+                    </div>
+
+                    <button class="btn btn-outline-primary btn-block" type="submit" name="action">Enviar
+                    </button>
+                </ng-container>
+
+                <ng-container *ngIf='f.get("category").value == 2'>
+                    <button class="btn btn-outline-danger btn-block" type="submit" name="action">Enviar
+                    </button>
+                </ng-container>
+            </form>
+        </div>
+    </div>
+</div>

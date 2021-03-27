@@ -1,0 +1,27 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="row">
+
+        <table class="table mt-5">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col"># usuario</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Rol</th>
+                <th scope="col">Usuario</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor='let user of users'>
+                <th scope="row">{{ user.userId }}</th>
+                <td>{{ user.person.firstName }}</td>
+                <td>{{ user.person.lastName }}</td>
+                <td>{{ user.role.name }}</td>
+                <td>{{ user.username }}</td>
+              </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
